@@ -1,0 +1,15 @@
+export default class ObjectSchema {
+  constructor() {
+    this.props = {};
+  }
+
+  shape(properties) {
+    this.props = properties;
+    return this;
+  }
+
+  isValid(obj) {
+    const props = Object.keys(this.props);
+    return props.every((prop) => this.props[prop].isValid(obj[prop]));
+  }
+}
